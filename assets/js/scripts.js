@@ -1,25 +1,38 @@
 const jsonData = 'signos.json';
 
-const getInputedDate = () => {
-    const result = new Date(document.getElementById('input-date').value);
-    const day = result.getUTCDate();
-    const month = result.getUTCMonth() + 1;
-    const newDate = `${day}/${month}`;
+const inputedDate = () => {
+    var result = new Date(document.getElementById('input-date').value);
+    
+    var day = '' + result.getUTCDate();
+    if (day.length < 2) day = '0' + day;
+    
+    const inputDay = day;
 
-    document.getElementById('formated-date').innerHTML = newDate;
+    var month = '' + (result.getUTCMonth() + 1);
+    if (month.length < 2) month = '0' + month;
+   
+    const inputMonth = month;
+
+    if (inputDay && inputMonth == String(NaN)) {
+        alert("Data inválida")
+    }
+
+    return ({ inputDay, inputMonth });
 
 };
 
 const getSign = async () => {
+    const { inputDay, inputMonth } = inputedDate()
     const response = await fetch(jsonData)
     const data = await response.json();
     const signData = data.signos;
-    const outputStart = signData.map(startDate => startDate.data_inicio);
-    const outputEnd = signData.map(endDate => endDate.data_fim);
-    console.log(outputStart, outputEnd);
-}
 
-document.getElementById('btn-sign').addEventListener('click', getInputedDate, getSign);
+    console.log(inputDay, inputMonth);
+
+    document.getElementById('formated-date').innerHTML = `${inputDay}/${inputMonth}`;
+
+};
+
 document.getElementById('btn-sign').addEventListener('click', getSign);
 
 
