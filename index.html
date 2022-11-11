@@ -21,13 +21,13 @@
         <div class="container d-flex flex-column justify-content-sm-around align-items-center">
             <label for="input-date">Insira aqui seu aniversário:</label></br>
             <input type="text" placeholder="AAAA-MM-DD" class="form-imput" id="input-date">
-            <button onClick='getFormatedDate()'class="btn btn-secondary mt-3">Ver Signo</button>
+            <button id="btn-sign" class="btn btn-secondary mt-3">Ver Signo</button>
         </div>
 
         <div class="mt-3 shadow p-3 mb-5 bg-white rounded">
             <article id="sign-show">
                 <p id="formated-date">
-                    <small class="text-muted">Você nasceu em `${result}`</small>
+                    <small class="text-muted"></small>
                 </p>
                 <h2 id="name">Resultado: <strong>`${signos.nome}`</strong></h2>
                 <h4 class="ts-3" id="date-range"><small class="text-muted">`De ${signos.data_inicio} à
