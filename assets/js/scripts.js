@@ -44,7 +44,11 @@ const getSign = async () => {
         }
     };
 
-    document.getElementById('formated-date').innerHTML = `Resultado: ${resultSigno}`;
+    if(!resultSigno){
+        document.getElementById('formated-date').innerHTML = ``;
+    } else {
+        document.getElementById('formated-date').innerHTML = `Resultado: ${resultSigno}`;
+    }
 
 };
 
