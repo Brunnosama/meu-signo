@@ -14,7 +14,7 @@ const listTest = [
 
 const testResult = listTest.map((item) => {
     const sign = getSign(new Date(item.date))
-    const result = sign.nome === item.name //sign.nome esta undefined
+    const result = sign?.nome === item.name
     
     return {sign, item, result}
     
