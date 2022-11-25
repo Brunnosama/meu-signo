@@ -8,12 +8,10 @@ const getSign = (date) => {
 
     let day = '' + date.getUTCDate();
     if (day.length < 2) day = '0' + day;
-
     const inputDay = day;
 
     let month = '' + (date.getUTCMonth() + 1);
     if (month.length < 2) month = '0' + month;
-
     const inputMonth = month;
 
     if ((inputMonth == 03 && inputDay >= 21) || (inputMonth == 04 && inputDay <= 20)) { resultSigno = signData[0] }
@@ -34,12 +32,12 @@ const getSign = (date) => {
     else if (
         (inputMonth == 11 && inputDay >= 23) || (inputMonth == 12 && inputDay <= 21)) { resultSigno = signData[8] }
     else if (
-        (inputMonth == 01 && inputDay <= 20) || (inputMonth == 12 && inputDay >= 22)) { resultSigno = signData[9] }
+        (inputMonth == 12 && inputDay >= 22) || (inputMonth == 01 && inputDay <= 20)) { resultSigno = signData[9] }
     else if (
         (inputMonth == 01 && inputDay >= 21) || (inputMonth == 02 && inputDay <= 18)) { resultSigno = signData[10] }
     else if (
         (inputMonth == 02 && inputDay >= 19) || (inputMonth == 03 && inputDay <= 20)) { resultSigno = signData[11] }
-        
+
     return resultSigno;
 };
 

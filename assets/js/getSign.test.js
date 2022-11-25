@@ -16,7 +16,7 @@ const testResult = listTest.map((item) => {
     const sign = getSign(new Date(item.date))
     const result = sign?.nome === item.name
     
-    return {sign, item, result}
+    return {item, result}
     
 });
 
