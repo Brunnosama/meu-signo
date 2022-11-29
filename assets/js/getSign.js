@@ -1,24 +1,21 @@
-const jsonData = require('../../signos.json');
+const { signos } = require('../../signos.json');
 
 // acho q pode ser esse async, mas a funcao quebra quando eu tiro
 const getSign = (date) => {
-    const signData = jsonData.signos;
 
-    let resultSigno = ''
+  let day = `${date.getUTCDate()}`.padStart(2, '0');
+  let month = `${(date.getUTCMonth() + 1)}`.padStart(2, '0');
 
-    let day = '' + date.getUTCDate(); if (day.length < 2) day = '0' + day;
-    const inputDay = day;
+  return signos.find(signo => {
+    const [diaInicio, mesInicio] = signo.data_inicio.split('/');
+    const [diaFim, mesFim] = signo.data_fim.split('/');
 
-    let month = '' + (date.getUTCMonth() + 1); if (month.length < 2) month = '0' + month;
-    const inputMonth = month;
+    if ((month == mesInicio && day >= diaInicio) || (month == mesFim && day <= diaFim)) {
+      return signo;
+    }
 
-    for (let index in signData) {
-        const dataInicio = signData[index].data_inicio.split("/");
-        const dataFim = signData[index].data_fim.split("/");
-
-        if ((inputMonth == dataInicio[1] && inputDay >= dataInicio[0] || inputMonth == dataFim[1] && inputDay <= dataFim[0])) { resultSigno = signData[index] }
-    };
-    return resultSigno;
+    return null;
+  })
 };
 
 module.exports = getSign;
